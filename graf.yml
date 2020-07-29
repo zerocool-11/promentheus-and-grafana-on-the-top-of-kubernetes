@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-dep
+
+spec:
+  replicas: 1      
+  selector: 
+      matchLabels:
+        app: graf
+  template:
+      metadata:
+        name: graf-pod
+        labels:
+            app: graf   
+      spec:
+       containers:
+        - name: graf-container
+          image: grafana/grafana
+          volumeMounts:
+          - name: graf-vol
+            mountPath: /var/lib/grafana
+         
+       volumes:
+        - name: graf-vol
+          persistentVolumeClaim:
+            claimName: graf-pvc
+        
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: graf-pvc
+  labels:
+    name: graf-pvc
+spec:
+  accessModes:
+   - ReadWriteOnce
+  resources:  
+    requests:
+      storage: 2Gi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: graf-service
+spec:
+  selector: 
+    app: graf
+  type: NodePort  
+  ports:
+    - port: 81
+      targetPort: 3000
+      nodePort: 30000

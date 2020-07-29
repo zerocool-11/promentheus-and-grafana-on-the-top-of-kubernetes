@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: promentheus-dep
+
+spec:
+  replicas: 1      
+  selector: 
+      matchLabels:
+        app: prom
+  template:
+      metadata:
+        name: prom-pod
+        labels:
+            app: prom   
+      spec:
+       containers:
+        - name: prom-container
+          image: prom/prometheus
+          volumeMounts:
+          - name: prom-vol
+            mountPath: /prometheus/
+          - name: prometheus-config-volume
+            mountPath: /etc/prometheus/
+       volumes:
+        - name: prom-vol
+          persistentVolumeClaim:
+            claimName: prom-pvc
+        - name: prometheus-config-volume
+          configMap:
+            name: prom-configmap
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prom-pvc
+  labels:
+    name: prom-pvc
+spec:
+  accessModes:
+   - ReadWriteOnce
+  resources:  
+    requests:
+      storage: 2Gi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: prom-service
+spec:
+  selector: 
+    app: prom
+  type: NodePort  
+  ports:
+    - port: 81
+      targetPort: 9090
+      nodePort: 30001
