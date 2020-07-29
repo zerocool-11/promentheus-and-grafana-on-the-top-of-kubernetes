@@ -9,3 +9,10 @@
 #### 4. kustomization.yml - to launch all these file at same time i made this file
 
 ### here's the some ss of the project
+![alt text](https://github.com/zerocool-11/promentheus-and-grafana-on-the-top-of-kubernetes/blob/master/images/task-5-kube.png)
+
+#### prometheus
+![alt text](https://github.com/zerocool-11/promentheus-and-grafana-on-the-top-of-kubernetes/blob/master/images/t5-promm.png)
+
+#### grafana
+![alt text](https://github.com/zerocool-11/promentheus-and-grafana-on-the-top-of-kubernetes/blob/master/images/t5-graf.png)
