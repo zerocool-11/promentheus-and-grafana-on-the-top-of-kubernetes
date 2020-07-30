@@ -1,4 +1,4 @@
-# prometheus-and-grafana-on-the-top-of-kubernetes
+# Prometheus-and-Grafana-on-the-top-of-Kubernetes
 
 ## here i deployed prometheus and grafana on kubernetes using deployment and configMap  
 
@@ -8,11 +8,11 @@
 #### 3. configMap.yml - to generate a prometheus.yml file which i required for the prometheus
 #### 4. kustomization.yml - to launch all these file at same time i made this file
 
-### here's the some ss of the project
+### Here are some screenshots of the Project
 ![alt text](https://github.com/zerocool-11/promentheus-and-grafana-on-the-top-of-kubernetes/blob/master/images/task-5-kube.png)
 
-#### prometheus
+#### Prometheus
 ![alt text](https://github.com/zerocool-11/promentheus-and-grafana-on-the-top-of-kubernetes/blob/master/images/t5-promm.png)
 
-#### grafana
+#### Grafana
 ![alt text](https://github.com/zerocool-11/promentheus-and-grafana-on-the-top-of-kubernetes/blob/master/images/t5-graf.png)
